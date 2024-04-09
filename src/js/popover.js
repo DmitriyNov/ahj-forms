@@ -1,25 +1,28 @@
 export default class Popover {
-  constructor() {
-  }
+  constructor() {}
 
   showPopover(message, element) {
-console.log('ок')
-
-    const popoverElement = document.createElement('div');
-    popoverElement.classList.add('popover')
+    const popoverElement = document.createElement("div");
+    popoverElement.classList.add("popover");
     popoverElement.innerHTML = `
-      <h4 class="">
-        ${message.title}
-      <h4>
-      <p class="">
-      ${message.text}
-      <p>
-    `
-
+      <div class="popover-title">
+        <p>${message.title}</p>
+      </div>
+      <div class="popover-text">
+        <p>${message.text}</p>
+      </div>
+    `;
     document.body.appendChild(popoverElement);
 
     const { right, top } = element.getBoundingClientRect();
-    popoverElement.style.left = right + element.offsetWidth / 2 - popoverElement.offsetWidth / 2 + 'px';
-    popoverElement.style.top = top + 5 + 'px';
+    console.log(right);
+    popoverElement.style.left =
+      right - element.offsetWidth / 2 - popoverElement.offsetWidth / 2 + "px";
+    popoverElement.style.top = top - popoverElement.offsetHeight - 5 + "px";
+  }
+
+  toglePopover() {
+    const popover = document.querySelector(".popover");
+    popover.classList.toggle("hidden");
   }
 }
